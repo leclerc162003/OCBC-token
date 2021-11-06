@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "797613376669",
+    "project_id": "onetokenocbc",
+    "storage_bucket": "onetokenocbc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797613376669:android:5402adb92f73755c4b0074",
+        "android_client_info": {
+          "package_name": "sg.edu.np.onetokenocbc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797613376669-qsutb5nm019mpq9o9ondqoeag3p2rq6b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCI4wiMm2eD8osJpv1gDp4_VSIMKgslUQI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797613376669-qsutb5nm019mpq9o9ondqoeag3p2rq6b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
