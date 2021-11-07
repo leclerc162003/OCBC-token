@@ -46,7 +46,7 @@ public class prompt extends AppCompatActivity {
             public void onClick(View v) {
                 request.setAuthorise(true);
                 request.setReplied(true);
-                mDatabase.child("Messages").child(mAuth.getUid()).setValue(request);
+                mDatabase.child("Messages").child(mAuth.getUid()+"1").child(mAuth.getUid()).setValue(request);
 
                 Intent i = new Intent(prompt.this, Home.class);
                 prompt.this.startActivity(i);
@@ -58,7 +58,7 @@ public class prompt extends AppCompatActivity {
             public void onClick(View v) {
                 request.setAuthorise(false);
                 request.setReplied(true);
-                mDatabase.child("Messages").child(mAuth.getUid()).setValue(request);
+                mDatabase.child("Messages").child(mAuth.getUid()+"1").child(mAuth.getUid()).setValue(request);
                 Intent i = new Intent(prompt.this, Home.class);
                 prompt.this.startActivity(i);
             }

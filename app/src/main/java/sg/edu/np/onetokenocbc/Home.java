@@ -27,25 +27,38 @@ public class Home extends AppCompatActivity {
 
         Log.d("User id", mAuth.getUid());
 
-        mDatabase.child("Messages").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("Messages").child(mAuth.getUid()+"1").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot postSnapshot: snapshot.getChildren() ){
                     //Requests request = postSnapshot.getValue(Requests.class);
                     Requests request = postSnapshot.getValue(Requests.class);
-
-
-                    if(request.getReplied() == false){
-                        Bundle extras = new Bundle();
-                        extras.putString("UID", request.getUIDUser());
-                        extras.putString("MessageID", request.getMessageID());
-                        extras.putString("Message", request.getMessage());
-                        extras.putBoolean("Authorise", request.getAuthorise());
-                        extras.putBoolean("Replied", request.getReplied());
-                        Intent i = new Intent(Home.this, prompt.class);
-                        i.putExtras(extras);
-                        Home.this.startActivity(i);
+                    if (request.getUIDUser().contentEquals(mAuth.getUid())){
+                        if(request.getReplied() == false){
+                            Bundle extras = new Bundle();
+                            extras.putString("UID", request.getUIDUser());
+                            extras.putString("MessageID", request.getMessageID());
+                            extras.putString("Message", request.getMessage());
+                            extras.putBoolean("Authorise", request.getAuthorise());
+                            extras.putBoolean("Replied", request.getReplied());
+                            Intent i = new Intent(Home.this, prompt.class);
+                            i.putExtras(extras);
+                            Home.this.startActivity(i);
+                        }
                     }
+
+
+//                    if(request.getReplied() == false){
+//                        Bundle extras = new Bundle();
+//                        extras.putString("UID", request.getUIDUser());
+//                        extras.putString("MessageID", request.getMessageID());
+//                        extras.putString("Message", request.getMessage());
+//                        extras.putBoolean("Authorise", request.getAuthorise());
+//                        extras.putBoolean("Replied", request.getReplied());
+//                        Intent i = new Intent(Home.this, prompt.class);
+//                        i.putExtras(extras);
+//                        Home.this.startActivity(i);
+//                    }
 
 
                 }
