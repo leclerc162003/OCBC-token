@@ -1,7 +1,7 @@
 # OCBC OneToken
 ![onetokenlogo](https://user-images.githubusercontent.com/73069909/144363619-4f1331c7-f244-4e94-98ea-d3b5a383cb61.jpeg)
 
-OCBC OneToken is an authorisation app for OCBC OneJoint.
+OCBC OneToken is an mobile authorisation app for OCBC OneJoint.
 
 - You are able to verify requests from OCBC OneJoint without the need of using emails and OTP!
 
