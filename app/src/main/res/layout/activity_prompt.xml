@@ -4,30 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".prompt">
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="369dp"
-        android:layout_height="156dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/onetokenlogo" />
 
     <TextView
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="120dp"
+        android:fontFamily="@font/advent_pro_semibold"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
         tools:text="this message is empty." />
 
     <Button
@@ -36,7 +27,9 @@
         android:layout_height="45dp"
         android:layout_marginTop="156dp"
         android:text="Authorise"
+
         app:backgroundTint="#FF0000"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/message"
         app:layout_constraintStart_toStartOf="@+id/message"
         app:layout_constraintTop_toBottomOf="@+id/message" />
@@ -48,8 +41,22 @@
         android:layout_marginTop="32dp"
         android:text="DO NOT AUTHORISE"
         app:backgroundTint="#5F5F5F"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/trueButton"
         app:layout_constraintStart_toStartOf="@+id/trueButton"
         app:layout_constraintTop_toBottomOf="@+id/trueButton" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:fontFamily="@font/sura"
+        android:text="Authorisation Request"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
