@@ -5,98 +5,72 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity {
-    public EditText Email;
-    public EditText Password;
-    public Button signIn;
-    public ImageView login;
-
+public class userLogin extends AppCompatActivity {
     private FirebaseAuth mAuth;
-
+    public EditText userEmail;
+    public EditText userPassword;
+    public ImageView login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_user_login);
         getSupportActionBar().hide();
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_user_login);
 
-        mAuth = FirebaseAuth.getInstance();
-        this.login = findViewById(R.id.loginmain);
+        this.userEmail = findViewById(R.id.username);
+        this.userPassword = findViewById(R.id.password);
+        this.login = findViewById(R.id.login);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, userLogin.class);
-                MainActivity.this.startActivity(i);
+
+                //validate user input for email and password
+                String email = String.valueOf(userEmail.getText());
+                String password = userPassword.getText().toString();
+
+                //check if email is empty
+                if(email.equals("")){
+                    userEmail.setError("can't be blank.");
+                }
+                //check if email is a valid email
+                else if (!isEmailValid(email)){
+                    userEmail.setError("invalid email.");
+                }
+                //check if password is empty and characters more than 6
+                else if(password.equals("") || password.length() < 6){
+                    userPassword.setError("must be more than 6 characters.");
+                }
+                //else sign in user
+                else{
+                    signIn(email, password);
+                    userEmail.setText("");
+                    userPassword.setText("");
+                }
+
+
             }
         });
-
-//        this.Email = findViewById(R.id.userEmail);
-//        this.Password = findViewById(R.id.userPassword);
-//        this.signIn = findViewById(R.id.signin);
-
-//        signIn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                //validate user input for email and password
-//                String email = String.valueOf(Email.getText());
-//                String password = Password.getText().toString();
-//
-//                //check if email is empty
-//                if(email.equals("")){
-//                    Email.setError("can't be blank.");
-//                }
-//                //check if email is a valid email
-//                else if (!isEmailValid(email)){
-//                    Email.setError("invalid email.");
-//                }
-//                //check if password is empty and characters more than 6
-//                else if(password.equals("") || password.length() < 6){
-//                    Password.setError("must be more than 6 characters.");
-//                }
-//                //else sign in user
-//                else{
-//                    signIn(email, password);
-//                    Email.setText("");
-//                    Password.setText("");
-//                }
-//
-//
-//            }
-//        });
-
-
-
-
-
-
-
-
     }
+
 
     private void signIn(String email, String password){
         //use firebase method to sign in user
@@ -111,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(context, "Log in success.", Toast.LENGTH_SHORT).show();
 //                            Intent i = new Intent(Signin.this, Profilepage.class);
 //                            Signin.this.startActivity(i);
-                            Intent i = new Intent(MainActivity.this, Home.class);
-                            MainActivity.this.startActivity(i);
+                            Intent i = new Intent(userLogin.this, Home.class);
+                            userLogin.this.startActivity(i);
 
                         }
                         else {
