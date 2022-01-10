@@ -35,6 +35,8 @@ public class userLogin extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_user_login);
 
+        mAuth = FirebaseAuth.getInstance();
+
         this.userEmail = findViewById(R.id.username);
         this.userPassword = findViewById(R.id.password);
         this.login = findViewById(R.id.login);
@@ -46,6 +48,9 @@ public class userLogin extends AppCompatActivity {
                 //validate user input for email and password
                 String email = String.valueOf(userEmail.getText());
                 String password = userPassword.getText().toString();
+
+                Log.d("email", email);
+                Log.d("password", password);
 
                 //check if email is empty
                 if(email.equals("")){

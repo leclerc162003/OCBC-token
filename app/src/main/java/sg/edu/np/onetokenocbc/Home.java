@@ -3,8 +3,10 @@ package sg.edu.np.onetokenocbc;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.WindowManager;
 
@@ -14,12 +16,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Home extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://onetokenocbc-default-rtdb.asia-southeast1.firebasedatabase.app/");
     DatabaseReference mDatabase = firebaseDatabase.getReference();
+    public Connection conn;
+    public String namel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +36,56 @@ public class Home extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
+
+        // trying out SQL
+        try{
+            conn = connectionclass();
+            //testConnection testConnection = new testConnection();
+
+            if(conn == null){
+                Log.d("fuck", "you internet");
+            }
+            else{
+                Log.d("fuck", "it worked");
+                String query = "select * from AccountHolder";
+                Statement stint = conn.createStatement();
+                ResultSet rs = stint.executeQuery(query);
+                if(rs.next()){
+                    //namel = rs.getString("CIFID");
+                    Log.d("fuck", String.valueOf(rs.getRow()));
+                    //Log.d("fuck", String.valueOf(rs.));
+                    conn.close();
+                }
+                else{
+
+                }
+            }
+        }
+        catch(Exception ex){
+            Log.d("error", ex.getMessage());
+        }
+//        try {
+//
+//            String SQL = "SELECT * FROM AccountHolder";
+//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//            StrictMode.setThreadPolicy(policy);
+//            Class.forName("net.sourceforge.jtds.jdbc.Driver");
+//            String url = String.format("jdbc:jtds:sqlserver://pfd-asg2-jointacc-server.database.windows.net:1433;DatabaseName=JointAccHostedDB;user=pfdasg2team1@pfd-asg2-jointacc-server;password=Hongshaoji!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+//            conn = DriverManager.getConnection(url);
+//
+//            Statement stmt = conn.createStatement();
+//            ResultSet rs = stmt.executeQuery(SQL);
+//            Log.d("works", "it works! 11");
+//            while (rs.next()) {
+//                System.out.println(rs.getRow());
+//                Log.d("works", "it works! 22");
+//            }
+//            conn.close();
+//        } catch (Exception e) {
+//            Log.d("not works", "not FUCKING works! 22");
+//            e.printStackTrace();
+//        }
+        //trying out SQL
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -78,8 +136,36 @@ public class Home extends AppCompatActivity {
         });
 
 
+
+
     }
+
+
+    @SuppressLint("NewApi")
+    public Connection connectionclass(){
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        Connection connection = null;
+        String ConnectionURL = null;
+
+        try {
+            Class.forName("net.sourceforge.jtds.jdbc.Driver");
+            ConnectionURL = "jdbc:jtds:sqlserver://pfd-asg2-jointacc-server.database.windows.net:1433;DatabaseName=JointAccHostedDB;user=pfdasg2team1@pfd-asg2-jointacc-server;password=Hongshaoji!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+            connection = DriverManager.getConnection(ConnectionURL);
+            Log.d("connection", connection.toString());
+
+        }
+        catch (SQLException | ClassNotFoundException se){
+            Log.d("32434","aegsdga");
+        }
+        return connection;
+
+    }
+
+
 }
+
 
 
 
