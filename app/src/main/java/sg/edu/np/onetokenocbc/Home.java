@@ -72,6 +72,7 @@ public class Home extends AppCompatActivity {
                     holder.setPassword(rs.getRowId(17).toString());
 
                     Log.d("fuck", String.valueOf(rs.getRow()));
+                    Log.d("fucks fuck", rs.getString(1));
                     //Log.d("fuck", String.valueOf(rs.));
                     conn.close();
                 }
@@ -170,13 +171,13 @@ public class Home extends AppCompatActivity {
 
         try {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
-            ConnectionURL = "jdbc:jtds:sqlserver://pfd-asg2-jointacc-server.database.windows.net:1433;DatabaseName=JointAccHostedDB;user=pfdasg2team1@pfd-asg2-jointacc-server;password=Hongshaoji!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+            ConnectionURL = "jdbc:jtds:sqlserver://pfd-asg2-jointacc-server.database.windows.net:1433;ssl=require;DatabaseName=JointAccHostedDB;user=pfdasg2team1@pfd-asg2-jointacc-server;password=Hongshaoji!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
             connection = DriverManager.getConnection(ConnectionURL);
             Log.d("connection", connection.toString());
 
         }
         catch (SQLException | ClassNotFoundException se){
-            Log.d("32434","aegsdga");
+            Log.d("32434",se.getMessage());
         }
         return connection;
 
