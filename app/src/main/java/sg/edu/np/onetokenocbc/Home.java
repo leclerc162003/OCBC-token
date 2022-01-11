@@ -46,12 +46,31 @@ public class Home extends AppCompatActivity {
                 Log.d("fuck", "you internet");
             }
             else{
+                String cifid = "";
                 Log.d("fuck", "it worked");
-                String query = "select * from AccountHolder";
+                String query = "select * from AccountHolder" + "WHERE CIFID =" + cifid;
                 Statement stint = conn.createStatement();
                 ResultSet rs = stint.executeQuery(query);
                 if(rs.next()){
-                    //namel = rs.getString("CIFID");
+                    AccountHolder holder = new AccountHolder();
+                    holder.setCIFID(rs.getRowId(1).toString()); //get and set CIFID
+                    holder.setID(rs.getRowId(2).toString()); //get and set ID
+                    holder.setIDType(rs.getRowId(3).toString());
+                    holder.setNationality(rs.getRowId(4).toString());
+                    holder.setSalutation(rs.getRowId(5).toString());
+                    holder.setName(rs.getRowId(6).toString());
+                    holder.setDOB(rs.getRowId(7).toString());
+                    holder.setGender(rs.getRowId(8).toString());
+                    holder.setMaritalStatus(rs.getRowId(9).toString());
+                    holder.setRace(rs.getRowId(10).toString());
+                    holder.setTypeofResidence(rs.getRowId(11).toString());
+                    holder.setAddress(rs.getRowId(12).toString());
+                    holder.setPostalCode(rs.getRowId(13).toString());
+                    holder.setEmail(rs.getRowId(14).toString());
+                    holder.setPhoneNo(rs.getRowId(15).toString());
+                    holder.setOccupation(rs.getRowId(16).toString());
+                    holder.setPassword(rs.getRowId(17).toString());
+
                     Log.d("fuck", String.valueOf(rs.getRow()));
                     //Log.d("fuck", String.valueOf(rs.));
                     conn.close();
