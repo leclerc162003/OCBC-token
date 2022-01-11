@@ -13,11 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OneTokenOCBC">
-        <activity android:name=".newHomepage"></activity>
+<!--        <activity android:name=".newHomepage"></activity>-->
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".userLogin" />
         <activity android:name=".prompt" />
         <activity android:name=".Home" />
-        <activity android:name=".MainActivity">
+<!--        <activity android:name=".MainActivity">-->
+        <activity android:name=".newHomepage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
