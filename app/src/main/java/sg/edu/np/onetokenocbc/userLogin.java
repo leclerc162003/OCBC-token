@@ -90,7 +90,7 @@ public class userLogin extends AppCompatActivity {
                             Toast.makeText(context, "Log in success.", Toast.LENGTH_SHORT).show();
 //                            Intent i = new Intent(Signin.this, Profilepage.class);
 //                            Signin.this.startActivity(i);
-                            Intent i = new Intent(userLogin.this, Home.class);
+                            Intent i = new Intent(userLogin.this, newHomepage.class);
                             userLogin.this.startActivity(i);
 
                         }
