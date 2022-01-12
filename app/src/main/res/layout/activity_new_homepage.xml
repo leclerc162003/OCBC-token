@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="400dp"
+        android:layout_width="0dp"
         android:layout_height="208dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,9 +92,12 @@
 <!--        app:srcCompat="@drawable/shape5" />-->
 
     <ScrollView
-        android:layout_width="400dp"
-        android:layout_height="522dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:overScrollMode="never"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4">
@@ -120,11 +123,11 @@
 
             <ImageView
                 android:id="@+id/imageView7"
-                android:layout_width="387dp"
+                android:layout_width="match_parent"
                 android:layout_height="239dp"
                 android:layout_marginTop="8dp"
                 android:paddingLeft="20dp"
-                android:paddingRight="10dp"
+                android:paddingRight="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView18"
@@ -149,10 +152,10 @@
 
                 <ImageView
                     android:id="@+id/imageView21"
-                    android:layout_width="387dp"
+                    android:layout_width="match_parent"
                     android:layout_height="181dp"
                     android:paddingLeft="20dp"
-                    android:paddingRight="10dp"
+                    android:paddingRight="20dp"
                     app:srcCompat="@drawable/shape6" />
 
                 <LinearLayout
@@ -163,7 +166,7 @@
 
                     <TextView
                         android:id="@+id/textView22"
-                        android:layout_width="263dp"
+                        android:layout_width="314dp"
                         android:layout_height="89dp"
                         android:layout_marginStart="28dp"
                         android:paddingLeft="10dp"
@@ -183,21 +186,21 @@
 
                         <ImageView
                             android:id="@+id/imageView25"
-                            android:layout_width="346dp"
+                            android:layout_width="match_parent"
                             android:layout_height="75dp"
                             android:cropToPadding="false"
                             android:paddingLeft="40dp"
                             android:paddingTop="5dp"
+                            android:paddingRight="40dp"
                             android:paddingBottom="10dp"
                             app:srcCompat="@drawable/buttonshape1" />
 
                         <TextView
                             android:id="@+id/textView23"
-                            android:layout_width="372dp"
-                            android:layout_height="46dp"
-                            android:paddingLeft="123dp"
+                            android:layout_width="370dp"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="130dp"
                             android:paddingTop="13dp"
-                            android:paddingRight="1dp"
                             android:text="Get Started!"
                             android:textColor="@color/white"
                             android:textSize="27sp"
