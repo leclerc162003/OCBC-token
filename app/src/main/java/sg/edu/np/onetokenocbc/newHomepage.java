@@ -44,7 +44,7 @@ public class newHomepage extends AppCompatActivity {
         this.name = findViewById(R.id.name);
         this.logout = findViewById(R.id.logout);
         AccountHolder currentuser = getAccountHolder(mAuth.getCurrentUser().getEmail());
-        name.setText("Mr" + currentuser.getName());
+        name.setText("Mr " + currentuser.getName());
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,27 +70,29 @@ public class newHomepage extends AppCompatActivity {
             else{
                 String cifid = "";
                 Log.d("fuck", "it worked");
-                String query = "select * from AccountHolder" + "WHERE Email =" + email;
+                String query = "select * from AccountHolder" + " WHERE Email = '" + email + "'";
+                Log.d ("query", query);
                 Statement stint = conn.createStatement();
                 ResultSet rs = stint.executeQuery(query);
                 if(rs.next()){
-                    holder.setCIFID(rs.getRowId(1).toString()); //get and set CIFID
-                    holder.setID(rs.getRowId(2).toString()); //get and set ID
-                    holder.setIDType(rs.getRowId(3).toString());
-                    holder.setNationality(rs.getRowId(4).toString());
-                    holder.setSalutation(rs.getRowId(5).toString());
-                    holder.setName(rs.getRowId(6).toString());
-                    holder.setDOB(rs.getRowId(7).toString());
-                    holder.setGender(rs.getRowId(8).toString());
-                    holder.setMaritalStatus(rs.getRowId(9).toString());
-                    holder.setRace(rs.getRowId(10).toString());
-                    holder.setTypeofResidence(rs.getRowId(11).toString());
-                    holder.setAddress(rs.getRowId(12).toString());
-                    holder.setPostalCode(rs.getRowId(13).toString());
-                    holder.setEmail(rs.getRowId(14).toString());
-                    holder.setPhoneNo(rs.getRowId(15).toString());
-                    holder.setOccupation(rs.getRowId(16).toString());
-                    holder.setPassword(rs.getRowId(17).toString());
+                    Log.d ("cifid", rs.getString(1));
+                    holder.setCIFID(rs.getString(1)); //get and set CIFID
+                    holder.setID(rs.getString(2)); //get and set ID
+                    holder.setIDType(rs.getString(3));
+                    holder.setNationality(rs.getString(4));
+                    holder.setSalutation(rs.getString(5));
+                    holder.setName(rs.getString(6));
+                    holder.setDOB(rs.getString(7));
+                    holder.setGender(rs.getString(8));
+                    holder.setMaritalStatus(rs.getString(9));
+                    holder.setRace(rs.getString(10));
+                    holder.setTypeofResidence(rs.getString(11));
+                    holder.setAddress(rs.getString(12));
+                    holder.setPostalCode(rs.getString(13));
+                    holder.setEmail(rs.getString(14));
+                    holder.setPhoneNo(rs.getString(15));
+                    holder.setOccupation(rs.getString(16));
+                    holder.setPassword(rs.getString(17));
 
                     Log.d("fuck", String.valueOf(rs.getRow()));
                     Log.d("fucks fuck", rs.getString(1));
