@@ -1,7 +1,13 @@
-# OCBC OneToken
-![onetokenlogo](https://user-images.githubusercontent.com/73069909/144363619-4f1331c7-f244-4e94-98ea-d3b5a383cb61.jpeg)
+# OCBC Mobile
 
-OCBC OneToken is an mobile authorisation app for OCBC OneJoint.
+OCBC Mobile is a mobile app developed for users to create a Joint Account with OCBC Bank safely and seamlessly.
+It includes integration with our web app OneJoint in terms of oneToken, one of our 2FA methods.
+
+# References
+
+- Fingerprint Lottie (Used in Login Page) https://assets7.lottiefiles.com/packages/lf20_bgqoyj8l.json
+
+
 
 - You are able to verify requests from OCBC OneJoint without the need of using emails and OTP!
 
