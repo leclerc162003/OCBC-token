@@ -111,6 +111,13 @@ public class newHomepage extends AppCompatActivity {
         return holder;
     }
 
+
+    //private void AddJointAccount()
+
+
+
+
+
     @SuppressLint("NewApi")
     public Connection connectionclass(){
 
