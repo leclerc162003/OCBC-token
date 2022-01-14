@@ -51,7 +51,7 @@ public class secretactivity extends AppCompatActivity {
         InputImage image;
         try {
             //image = InputImage.fromFilePath(this, Uri.fromFile(new File("/storage/self/primary/Pictures/testimage.png")));
-            image = InputImage.fromFilePath(this, Uri.fromFile(new File("/storage/self/primary/Pictures/637728674370782175.png")));
+            image = InputImage.fromFilePath(this, Uri.fromFile(new File("/storage/self/primary/Pictures/testimage.png")));
             //image = InputImage.fromFilePath(this, Uri.parse("https://www.google.com.sg/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F178103360251844589%2F&psig=AOvVaw1TMNj2KZuSkMSURNQBPUBI&ust=1642085641742000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJCDiu-7rPUCFQAAAAAdAAAAABAD"));
             //Bitmap b = MediaStore.Images.Media.getBitmap(this.getContentResolver(), R.drawable.testimage);
             //image = InputImage.fromBitmap(b, 0);
@@ -74,6 +74,7 @@ public class secretactivity extends AppCompatActivity {
                                                 String elementText = element.getText();
                                                 Point[] elementCornerPoints = element.getCornerPoints();
                                                 Rect elementFrame = element.getBoundingBox();
+                                                //whatever you want to do with the information
 
                                                 Log.d("line it works", elementText);
                                             }
