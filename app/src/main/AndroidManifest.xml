@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,8 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OneTokenOCBC">
-<!--        <activity android:name=".secretactivity"></activity>-->
-
+        <activity android:name=".singpasslogin"></activity>
+        <activity android:name=".createJointMainHolder" /> <!-- <activity android:name=".secretactivity"></activity> -->
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
             android:value="ocr,model2,model3" />
@@ -24,8 +25,9 @@
         <activity android:name=".userLogin" />
         <activity android:name=".prompt" />
         <activity android:name=".Home" />
-<!--        <activity android:name=".MainActivity">-->
-        <activity android:name=".secretactivity">
+        <activity android:name=".MainActivity">
+
+            <!-- <activity android:name=".secretactivity"> -->
             <!-- <activity android:name=".newHomepage"> -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

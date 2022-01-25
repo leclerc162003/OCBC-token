@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public EditText Password;
     public Button signIn;
     public ImageView login;
+    public ImageView singpassLogin;
 
     private FirebaseAuth mAuth;
 
@@ -45,14 +46,24 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         this.login = findViewById(R.id.loginmain);
+        this.singpassLogin = findViewById(R.id.singpassLogin);
 
-
-
+        //direct user to userlogin activity when clicked on button
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, userLogin.class);
                 MainActivity.this.startActivity(i);
+            }
+        });
+
+        //direct user to singpass login activity when clicked on button
+        singpassLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, singpasslogin.class);
+                MainActivity.this.startActivity(i);
+
             }
         });
 

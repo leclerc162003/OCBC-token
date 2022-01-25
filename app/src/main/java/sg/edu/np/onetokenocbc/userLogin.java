@@ -37,9 +37,9 @@ public class userLogin extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        this.userEmail = findViewById(R.id.username);
-        this.userPassword = findViewById(R.id.password);
-        this.login = findViewById(R.id.login);
+        this.userEmail = findViewById(R.id.loginID);
+        this.userPassword = findViewById(R.id.loginpassword);
+        this.login = findViewById(R.id.loginSi);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

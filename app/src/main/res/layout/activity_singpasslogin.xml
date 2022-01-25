@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient1"
-    tools:context=".userLogin">
+    tools:context=".singpasslogin">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie"
@@ -14,10 +14,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
-        app:layout_constraintVertical_bias="0.044"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:layout_constraintVertical_bias="0.036"
         app:lottie_autoPlay="true"
-        app:lottie_rawRes="@raw/register" />
+        app:lottie_rawRes="@raw/smartphone" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -32,13 +32,13 @@
         app:srcCompat="@drawable/shape3" />
 
     <EditText
-        android:id="@+id/loginID"
+        android:id="@+id/singpassID"
         android:layout_width="293dp"
         android:layout_height="54dp"
         android:layout_marginTop="34dp"
         android:background="@drawable/custominput"
         android:ems="10"
-        android:hint="Username"
+        android:hint="Singpass ID"
         android:inputType="textPersonName"
         android:paddingLeft="20dp"
         android:textColorHint="#969696"
@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <EditText
-        android:id="@+id/loginpassword"
+        android:id="@+id/singpassword"
         android:layout_width="293dp"
         android:layout_height="54dp"
         android:layout_marginTop="16dp"
@@ -61,22 +61,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/loginID" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="140dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="32dp"
-        android:text="OCBC Bank"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/singpassID" />
 
     <TextView
         android:id="@+id/textView11"
@@ -98,9 +83,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/loginpassword"
-        app:layout_constraintStart_toStartOf="@+id/loginpassword"
-        app:layout_constraintTop_toBottomOf="@+id/loginpassword"
+        app:layout_constraintEnd_toEndOf="@+id/singpassword"
+        app:layout_constraintStart_toStartOf="@+id/singpassword"
+        app:layout_constraintTop_toBottomOf="@+id/singpassword"
         app:srcCompat="@drawable/buttonshape1" />
 
     <TextView
@@ -115,5 +100,31 @@
         app:layout_constraintEnd_toEndOf="@+id/loginSi"
         app:layout_constraintStart_toStartOf="@+id/loginSi"
         app:layout_constraintTop_toTopOf="@+id/loginSi" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="407dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/singpassnew" />
+
+    <TextView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="15dp"
+        android:text="< Back"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
