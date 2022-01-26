@@ -45,8 +45,8 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:28.2.1')
     implementation 'com.google.android.gms:play-services-mlkit-text-recognition:17.0.1'
     implementation 'com.twilio:voice-android:5.7.2'
-    compile 'com.sparkjava:spark-core:2.6.0'
-    compile group: 'com.twilio.sdk', name: 'twilio', version: '7.9.0'
-    compile 'org.slf4j:slf4j-simple:1.6.1'
+    compile group: "com.twilio.sdk", name: "twilio", version: "7.45.+"
+    compile group: "com.sparkjava", name: "spark-core", version: "2.7.1"
+    compile group: "org.slf4j", name: "slf4j-simple", version: "1.7.21"
 
 }
