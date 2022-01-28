@@ -25,8 +25,9 @@
         <activity android:name=".newHomepage" /> <!-- <activity android:name=".MainActivity"></activity> -->
         <activity android:name=".userLogin" />
         <activity android:name=".prompt" />
-        <activity android:name=".Home" /> <!-- <activity android:name=".MainActivity"> -->
-        <activity android:name=".secretactivity">
+        <activity android:name=".Home" />
+         <activity android:name=".MainActivity">
+<!--        <activity android:name=".secretactivity">-->
 
             <!-- <activity android:name=".createJointMainHolder"> -->
             <intent-filter>
