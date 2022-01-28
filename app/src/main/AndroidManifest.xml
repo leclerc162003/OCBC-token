@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OneTokenOCBC">
-        <activity android:name=".backNRIC"></activity>
+        <activity android:name=".jointHolderoption"></activity>
+        <activity android:name=".updateMainHolder" />
+        <activity android:name=".backNRIC" />
         <activity android:name=".singpasslogin" />
         <activity android:name=".createJointMainHolder" /> <!-- <activity android:name=".secretactivity"></activity> -->
         <meta-data
@@ -26,8 +28,10 @@
         <activity android:name=".userLogin" />
         <activity android:name=".prompt" />
         <activity android:name=".Home" />
-         <activity android:name=".MainActivity">
-<!--        <activity android:name=".secretactivity">-->
+        <activity android:name=".MainActivity">
+
+            <!-- <activity android:name=".secretactivity"> -->
+
 
             <!-- <activity android:name=".createJointMainHolder"> -->
             <intent-filter>
