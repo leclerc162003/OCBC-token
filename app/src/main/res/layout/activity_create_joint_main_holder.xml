@@ -6,46 +6,240 @@
     android:layout_height="match_parent"
     tools:context=".createJointMainHolder">
 
+
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="81dp"
-        android:layout_height="79dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView15"
-        app:layout_constraintEnd_toStartOf="@+id/textView15"
-        app:layout_constraintStart_toStartOf="@+id/button"
+        android:layout_width="90dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ocbclogowwithoutwords" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/textView15"
+        android:layout_width="241dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="12dp"
+        android:text="OCBC Account Creation"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+    <Spinner
+        android:id="@+id/titles"
+        android:layout_width="119dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+
+    <EditText
+        android:id="@+id/jointName"
+        android:layout_width="178dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/textView15"
+        app:layout_constraintHorizontal_bias="0.794"
+        app:layout_constraintStart_toEndOf="@+id/titles"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <Spinner
+        android:id="@+id/jointIDtype"
+        android:layout_width="134dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="12dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintStart_toStartOf="@+id/titles"
+        app:layout_constraintTop_toBottomOf="@+id/titles" />
+
+    <EditText
+        android:id="@+id/jointNRIC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="< Back"
-        android:textColor="@android:color/holo_red_dark"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="NRIC"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/jointName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/jointIDtype"
+        app:layout_constraintTop_toBottomOf="@+id/jointName" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="374dp"
-        android:layout_height="2dp"
-        android:layout_marginBottom="16dp"
-        android:textColorLink="red"
-        app:backgroundTint="@android:color/holo_red_dark"
-        app:layout_constraintBottom_toTopOf="@+id/imageView5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
-        app:layout_constraintStart_toStartOf="parent" />
+    <EditText
+        android:id="@+id/jointHP"
+        android:layout_width="200dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Phone Number"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/jointIDtype"
+        app:layout_constraintTop_toBottomOf="@+id/jointIDtype" />
+
+    <Spinner
+        android:id="@+id/jointGender"
+        android:layout_width="99dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="@+id/jointNRIC"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toEndOf="@+id/jointHP"
+        app:layout_constraintTop_toBottomOf="@+id/jointNRIC" />
+
+    <EditText
+        android:id="@+id/jointNationality"
+        android:layout_width="335dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Nationality"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/jointEmail"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/jointEmail"
+        app:layout_constraintTop_toBottomOf="@+id/jointEmail" />
+
+    <Spinner
+        android:id="@+id/jointMarital"
+        android:layout_width="135dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toStartOf="@+id/jointRace"
+        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintStart_toStartOf="@+id/jointDOB"
+        app:layout_constraintTop_toBottomOf="@+id/jointDOB" />
+
+    <Spinner
+        android:id="@+id/jointRace"
+        android:layout_width="120dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="@+id/jointDOB"
+        app:layout_constraintTop_toBottomOf="@+id/jointDOB" />
+
+    <Spinner
+        android:id="@+id/jointResidentType"
+        android:layout_width="324dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="12dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="@+id/jointRace"
+        app:layout_constraintStart_toStartOf="@+id/jointMarital"
+        app:layout_constraintTop_toBottomOf="@+id/jointMarital" />
+
+    <EditText
+        android:id="@+id/jointDOB"
+        android:layout_width="335dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="Date of Birth"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/jointNationality"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/jointNationality"
+        app:layout_constraintTop_toBottomOf="@+id/jointNationality" />
+
+    <EditText
+        android:id="@+id/jointEmail"
+        android:layout_width="333dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/jointGender"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/jointHP"
+        app:layout_constraintTop_toBottomOf="@+id/jointHP" />
+
+    <EditText
+        android:id="@+id/jointAddress"
+        android:layout_width="202dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Address"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/jointResidentType"
+        app:layout_constraintTop_toBottomOf="@+id/jointResidentType" />
+
+    <EditText
+        android:id="@+id/jointPostal"
+        android:layout_width="123dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Postal Code"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/jointResidentType"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/jointAddress"
+        app:layout_constraintTop_toBottomOf="@+id/jointResidentType" />
+
+    <EditText
+        android:id="@+id/jointOccupation"
+        android:layout_width="339dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Occupation"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/jointPostal"
+        app:layout_constraintStart_toStartOf="@+id/jointAddress"
+        app:layout_constraintTop_toBottomOf="@+id/jointAddress" />
+
+    <ImageView
+        android:id="@+id/jointCreate"
+        android:layout_width="216dp"
+        android:layout_height="58dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/check"
+        app:layout_constraintStart_toStartOf="@+id/check"
+        app:layout_constraintTop_toBottomOf="@+id/check"
+        app:srcCompat="@drawable/buttonshape1" />
 
     <TextView
-        android:id="@+id/textView15"
-        android:layout_width="203dp"
-        android:layout_height="67dp"
-        android:layout_marginEnd="45dp"
-        android:text="OCBC Account Creation"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        tools:layout_editor_absoluteY="81dp" />
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Account"
+        app:layout_constraintBottom_toBottomOf="@+id/jointCreate"
+        app:layout_constraintEnd_toEndOf="@+id/jointCreate"
+        app:layout_constraintStart_toStartOf="@+id/jointCreate"
+        app:layout_constraintTop_toTopOf="@+id/jointCreate" />
+
+    <CheckBox
+        android:id="@+id/check"
+        android:layout_width="276dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="12dp"
+        android:text="By checking this box, you agreed that you have filled up this form to correctly to the best of your ability"
+        app:layout_constraintEnd_toEndOf="@+id/jointOccupation"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="@+id/jointOccupation"
+        app:layout_constraintTop_toBottomOf="@+id/jointOccupation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,11 +20,18 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class newHomepage extends AppCompatActivity {
 
@@ -36,11 +44,38 @@ public class newHomepage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_homepage);
         getSupportActionBar().hide();
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_new_homepage);
+
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.setThreadPolicy( new StrictMode.ThreadPolicy.Builder().permitAll().build() );
+        }
+
+
+        OkHttpClient client = new OkHttpClient();
+        String url = "https://api.twilio.com/2010-04-01/Accounts/"+"AC82b9e5b1bbf2e0a9a3c6b8f851e65756"+"/SMS/Messages";
+        String base64EncodedCredentials = "Basic " + Base64.encodeToString(("AC82b9e5b1bbf2e0a9a3c6b8f851e65756" + ":" + "c47afab4512f541f06bb91e7f72cb252").getBytes(), Base64.NO_WRAP);
+
+        RequestBody body = new FormBody.Builder()
+                .add("From", "+16067662293")
+                .add("To", "+6596966253")
+                .add("Body", "Yeji is fucking beautiful.")
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .header("Authorization", base64EncodedCredentials)
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            Log.d("TAG", "sendSms: "+ response.body().string());
+        } catch (IOException e) { e.printStackTrace(); }
+
+
 
         mAuth = FirebaseAuth.getInstance();
         this.name = findViewById(R.id.name);
@@ -54,7 +89,8 @@ public class newHomepage extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent i = new Intent(newHomepage.this, createJointMainHolder.class);
+                newHomepage.this.startActivity(i);
             }
         });
 
