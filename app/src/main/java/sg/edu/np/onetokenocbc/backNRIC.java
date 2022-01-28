@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class secretactivity extends AppCompatActivity {
+public class backNRIC extends AppCompatActivity {
     ImageView imageView;
     TextView error;
     Button button;
@@ -37,10 +37,12 @@ public class secretactivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_secretactivity);
-        imageView = (ImageView)findViewById(R.id.backNRICpic);
-        button = (Button)findViewById(R.id.buttonLoadPicture);
-        error = (TextView)findViewById(R.id.errorMessageIC);
+        setContentView(R.layout.activity_back_n_r_i_c);
+
+        this.imageView = findViewById(R.id.backNRICpic);
+        this.error = findViewById(R.id.errorBackIC);
+        this.button = findViewById(R.id.uploadBackNRIC);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,9 +51,8 @@ public class secretactivity extends AppCompatActivity {
         });
 
 
-
-
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -101,29 +102,30 @@ public class secretactivity extends AppCompatActivity {
                                             Log.d("words", content.get(i));
                                         }
 
-                                        if(!content.get(0).toUpperCase().contains("REPUBLIC OF SINGAPORE")){
-                                            error.setText("The image uploaded is not an NRIC. Please Try Again");
+                                        if(!content.get(2).toLowerCase().contains("date of issue")){
+                                            error.setText("Please re-upload the image of the back of the NRIC");
                                         }
                                         else{
                                             error.setText("");
                                             Bundle extras = new Bundle();
-                                            Log.d("NRIC", content.get(1).substring(content.get(1).length() - 9));
-                                            Log.d("Name", content.get(5));
-                                            Log.d("Race", content.get(7));
-                                            Log.d("DOB", content.get(11));
-                                            Log.d("Sex", content.get(12));
-                                            extras.putString("NRIC", content.get(1).substring(content.get(1).length() - 9));
-                                            extras.putString("Name", content.get(5));
-                                            extras.putString("Race", content.get(7));
-                                            extras.putString("DOB", content.get(11));
-                                            extras.putString("Sex", content.get(12));
-//                                            Intent i = new Intent(secretactivity.this, createJointMainHolder.class);
-//                                            i.putExtras(extras);
-//                                            secretactivity.this.startActivity(i);
+                                            Intent receive = getIntent();
 
-                                            Intent i = new Intent(secretactivity.this, backNRIC.class);
+                                            extras.putString("NRIC", receive.getStringExtra("NRIC"));
+                                            extras.putString("Name", receive.getStringExtra("Name"));
+                                            extras.putString("Race", receive.getStringExtra("Race"));
+                                            extras.putString("DOB", receive.getStringExtra("DOB"));
+                                            extras.putString("Sex", receive.getStringExtra("Sex"));
+                                            extras.putString("Address",content.get(5) + content.get(6));
+                                            extras.putString("PostalCode",content.get(7));
+                                            Intent i = new Intent(backNRIC.this, createJointMainHolder.class);
                                             i.putExtras(extras);
-                                            secretactivity.this.startActivity(i);
+                                            backNRIC.this.startActivity(i);
+////                                            extras.putString("Username", chatUser.getUsername());
+//                                            extras.putString("UID", chatUser.getUID());
+//                                            extras.putString("imagePFP", chatUser.getProfilePic());
+//                                            Intent i = new Intent(context, MessagePart.class);
+//                                            i.putExtras(extras);
+//                                            context.startActivity(i);
 
                                         }
 

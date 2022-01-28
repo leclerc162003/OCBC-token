@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OneTokenOCBC">
-        <activity android:name=".singpasslogin"></activity>
+        <activity android:name=".backNRIC"></activity>
+        <activity android:name=".singpasslogin" />
         <activity android:name=".createJointMainHolder" /> <!-- <activity android:name=".secretactivity"></activity> -->
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
@@ -24,11 +25,10 @@
         <activity android:name=".newHomepage" /> <!-- <activity android:name=".MainActivity"></activity> -->
         <activity android:name=".userLogin" />
         <activity android:name=".prompt" />
-        <activity android:name=".Home" />
-<!--        <activity android:name=".MainActivity">-->
+        <activity android:name=".Home" /> <!-- <activity android:name=".MainActivity"> -->
+        <activity android:name=".secretactivity">
 
-             <activity android:name=".secretactivity">
-<!--        <activity android:name=".createJointMainHolder">-->
+            <!-- <activity android:name=".createJointMainHolder"> -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

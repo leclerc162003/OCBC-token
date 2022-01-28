@@ -20,7 +20,7 @@
         app:lottie_rawRes="@raw/register" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/backNRICpic"
         android:layout_width="328dp"
         android:layout_height="326dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,8 +43,8 @@
         android:paddingLeft="20dp"
         android:textColorHint="#969696"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/backNRICpic"
+        app:layout_constraintStart_toStartOf="@+id/backNRICpic"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <EditText
@@ -59,8 +59,8 @@
         android:paddingLeft="20dp"
         android:textColorHint="#969696"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/backNRICpic"
+        app:layout_constraintStart_toStartOf="@+id/backNRICpic"
         app:layout_constraintTop_toBottomOf="@+id/loginID" />
 
     <TextView
@@ -87,9 +87,9 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintEnd_toEndOf="@+id/backNRICpic"
+        app:layout_constraintStart_toStartOf="@+id/backNRICpic"
+        app:layout_constraintTop_toTopOf="@+id/backNRICpic" />
 
     <ImageView
         android:id="@+id/loginSi"
@@ -97,7 +97,7 @@
         android:layout_height="56dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/backNRICpic"
         app:layout_constraintEnd_toEndOf="@+id/loginpassword"
         app:layout_constraintStart_toStartOf="@+id/loginpassword"
         app:layout_constraintTop_toBottomOf="@+id/loginpassword"

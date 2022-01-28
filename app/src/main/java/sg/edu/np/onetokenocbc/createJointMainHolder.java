@@ -136,6 +136,10 @@ public class createJointMainHolder extends AppCompatActivity {
                 Nationality.setText("Singaporean");
             }
         }
+
+        address.setText(receive.getStringExtra("Address"));
+        postalCode.setText(receive.getStringExtra("PostalCode"));
+
         //initialise button
         this.Create = findViewById(R.id.jointCreate);
 
