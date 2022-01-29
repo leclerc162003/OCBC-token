@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,6 +38,9 @@ public class secretactivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_secretactivity);
         imageView = (ImageView)findViewById(R.id.backNRICpic);
         button = (Button)findViewById(R.id.buttonLoadPicture);
@@ -110,13 +114,13 @@ public class secretactivity extends AppCompatActivity {
                                             Log.d("NRIC", content.get(1).substring(content.get(1).length() - 9));
                                             Log.d("Name", content.get(5));
                                             Log.d("Race", content.get(7));
-                                            Log.d("DOB", content.get(11));
-                                            Log.d("Sex", content.get(12));
+                                            Log.d("DOB", content.get(10));
+                                            Log.d("Sex", content.get(11));
                                             extras.putString("NRIC", content.get(1).substring(content.get(1).length() - 9));
                                             extras.putString("Name", content.get(5));
                                             extras.putString("Race", content.get(7));
-                                            extras.putString("DOB", content.get(11));
-                                            extras.putString("Sex", content.get(12));
+                                            extras.putString("DOB", content.get(10));
+                                            extras.putString("Sex", content.get(11));
 //                                            Intent i = new Intent(secretactivity.this, createJointMainHolder.class);
 //                                            i.putExtras(extras);
 //                                            secretactivity.this.startActivity(i);

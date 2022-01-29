@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,6 +38,9 @@ public class backNRIC extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_back_n_r_i_c);
 
         this.imageView = findViewById(R.id.backNRICpic);
@@ -116,7 +120,7 @@ public class backNRIC extends AppCompatActivity {
                                             extras.putString("DOB", receive.getStringExtra("DOB"));
                                             extras.putString("Sex", receive.getStringExtra("Sex"));
                                             extras.putString("Address",content.get(5) + content.get(6));
-                                            extras.putString("PostalCode",content.get(7));
+                                            extras.putString("PostalCode",content.get(7).substring(content.get(7).length() - 6));
                                             Intent i = new Intent(backNRIC.this, createJointMainHolder.class);
                                             i.putExtras(extras);
                                             backNRIC.this.startActivity(i);

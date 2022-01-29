@@ -15,11 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OneTokenOCBC">
-        <activity android:name=".jointHolderoption"></activity>
+        <activity android:name=".AccountCreated"></activity>
+        <activity android:name=".jointHolderoption" />
         <activity android:name=".updateMainHolder" />
         <activity android:name=".backNRIC" />
         <activity android:name=".singpasslogin" />
-        <activity android:name=".createJointMainHolder" /> <!-- <activity android:name=".secretactivity"></activity> -->
+        <activity android:name=".createJointMainHolder" />
+        <activity android:name=".secretactivity" />
+
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
             android:value="ocr,model2,model3" />

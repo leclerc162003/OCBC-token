@@ -2,6 +2,7 @@ package sg.edu.np.onetokenocbc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -55,31 +56,31 @@ public class updateMainHolder extends AppCompatActivity {
 
         //id type
         this.idType = findViewById(R.id.mainIDtype);
-        String[] idList = new String[]{"Singaporean", "PR", "Foreigner"};
+        String[] idList = new String[]{"Singapore NRIC", "Singapore PR"};
         ArrayAdapter<String> idAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, idList);
         idType.setAdapter(idAdapter);
 
 
         //Gender
         this.Gender = findViewById(R.id.mainGender);
-        String[] genderList = new String[]{"M", "F"};
+        String[] genderList = new String[]{"Male", "Female"};
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, genderList);
         Gender.setAdapter(genderAdapter);
 
         //Marital Status
         this.mStatus = findViewById(R.id.mainMarital);
-        String[] mList = new String[]{"Single", "Married", "Windowed"};
+        String[] mList = new String[]{"Single", "Married", "Others"};
         ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, mList);
         mStatus.setAdapter(mAdapter);
 
         //Race
         this.race = findViewById(R.id.mainRace);
-        String[] raceList = new String[]{"Chinese", "Malay", "Indian", "Caucasian", "Others"};
+        String[] raceList = new String[]{"Chinese", "Malay", "Indian", "Others"};
         ArrayAdapter<String> raceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, raceList);
         race.setAdapter(raceAdapter);
 
         this.rType = findViewById(R.id.mainResidentType);
-        String[] rList = new String[]{"HDB", "Private", "Landed", "Condo", "Executive Apartment"};
+        String[] rList = new String[]{"HDB - Standard / Executive / Mansionette", "HDB - Studio Apartment for Senior Citizens", "HDB - HUDC / Executive Condominium','HDB - Shop with Accommodation ", "Condominium / Private Apartment", "Terrace / Bungalow"};
         ArrayAdapter<String> rAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, rList);
         rType.setAdapter(rAdapter);
 
@@ -172,8 +173,13 @@ public class updateMainHolder extends AppCompatActivity {
                 updated.setRace(raceList[race.getSelectedItemPosition()]);
                 updated.setTypeofResidence(rList[rType.getSelectedItemPosition()]);
                 updateAccountHolder(updated);
-                createAccount(updated);
                 Log.d("updated", "yes");
+
+                Intent i = new Intent(updateMainHolder.this, jointHolderoption.class);
+                updateMainHolder.this.startActivity(i);
+
+
+                //intent to jointholder option
             }
         });
 
@@ -246,10 +252,10 @@ public class updateMainHolder extends AppCompatActivity {
             if (conn == null) {
                 Log.d("fuck", "you internet");
             } else {
-                String query = "UPDATE AccountHolder SET ID= '" + holder.getID() + "', IDType= '" + "Singapore NRIC" + "' , Nationality= '" + holder.getNationality() +"' , Salutation= '" + holder.getSalutation() +"' , Name= '" + holder.getName()+
-                        "' , DoB= '" + holder.getDOB() +"' , Gender= '"+ holder.getGender() +"' , MaritalStatus= '" + "Male" + "' , Race= '" + holder.getRace() + "' , TypeofResidence= '"+ "Terrace / Bungalow"+"' , Address= '"+ holder.getAddress() +
+                String query = "UPDATE AccountHolder SET ID= '" + holder.getID() + "', IDType= '" + holder.getIDType() + "' , Nationality= '" + holder.getNationality() +"' , Salutation= '" + holder.getSalutation() +"' , Name= '" + holder.getName()+
+                        "' , DoB= '" + holder.getDOB() +"' , Gender= '"+ holder.getGender() +"' , MaritalStatus= '" + holder.getMaritalStatus() + "' , Race= '" + holder.getRace() + "' , TypeofResidence= '"+  holder.getTypeofResidence() +"' , Address= '"+ holder.getAddress() +
                         "' , PostalCode= '"+ holder.getPostalCode()+"' , Email= '"+ holder.getEmail()+"' , PhoneNo= '" + holder.getPhoneNo() +"' , Occupation= '" + holder.getOccupation() +
-                        "' WHERE CIFID = '" + holder.getCIFID().substring(0,8) +"'";
+                        "' WHERE CIFID = '" + holder.getCIFID() +"'";
                 Log.d("query", query);
                 Log.d("id ", String.valueOf(holder.getCIFID().length()));
                 Statement stint = conn.createStatement();
@@ -264,28 +270,28 @@ public class updateMainHolder extends AppCompatActivity {
 
     }
 
-    private void createAccount(AccountHolder holder) {
-
-        try {
-            //conn = connectionclass();
-            conn = new AccountHolderDAL().AccountHolderConnection();
-            if (conn == null) {
-                Log.d("fuck", "you internet");
-            } else {
-                String query = "INSERT INTO AccountHolder (CIFID, ID, IDType, Nationality, Salutation, Name, DoB, Gender, MaritalStatus, Race, TypeofResidence, Address, " +
-                        "PostalCode, Email, PhoneNo, Occupation, Password) " +
-                        "VALUES ('" + holder.getCIFID().substring(0,8) + "', '" + holder.getID() + "', '" + "Singapore NRIC" + "', '" + holder.getNationality() + "', '" + holder.getSalutation() + "', '" +
-                        holder.getName() + "', '" + holder.getDOB() + "', '" + "Male" + "', '" + holder.getMaritalStatus() + "', '" + holder.getRace() + "', '" +
-                        "Terrace / Bungalow" + "', '" + holder.getAddress() + "', '" + holder.getPostalCode() + "', '" + holder.getEmail() + "', '" + holder.getPhoneNo() + "', '" +
-                        holder.getOccupation() + "', '" + holder.getPassword() + "')";
-
-                Statement stint = conn.createStatement();
-                Log.d("query", query);
-                stint.execute(query);
-                conn.close();
-            }
-        } catch (Exception ex) {
-            Log.d("error", ex.getMessage());
-        }
-    }
+//    private void createAccount(AccountHolder holder) {
+//
+//        try {
+//            //conn = connectionclass();
+//            conn = new AccountHolderDAL().AccountHolderConnection();
+//            if (conn == null) {
+//                Log.d("fuck", "you internet");
+//            } else {
+//                String query = "INSERT INTO AccountHolder (CIFID, ID, IDType, Nationality, Salutation, Name, DoB, Gender, MaritalStatus, Race, TypeofResidence, Address, " +
+//                        "PostalCode, Email, PhoneNo, Occupation, Password) " +
+//                        "VALUES ('" + holder.getCIFID().substring(0,8) + "', '" + holder.getID() + "', '" + "Singapore NRIC" + "', '" + holder.getNationality() + "', '" + holder.getSalutation() + "', '" +
+//                        holder.getName() + "', '" + holder.getDOB() + "', '" + "Male" + "', '" + holder.getMaritalStatus() + "', '" + holder.getRace() + "', '" +
+//                        "Terrace / Bungalow" + "', '" + holder.getAddress() + "', '" + holder.getPostalCode() + "', '" + holder.getEmail() + "', '" + holder.getPhoneNo() + "', '" +
+//                        holder.getOccupation() + "', '" + holder.getPassword() + "')";
+//
+//                Statement stint = conn.createStatement();
+//                Log.d("query", query);
+//                stint.execute(query);
+//                conn.close();
+//            }
+//        } catch (Exception ex) {
+//            Log.d("error", ex.getMessage());
+//        }
+//    }
 }

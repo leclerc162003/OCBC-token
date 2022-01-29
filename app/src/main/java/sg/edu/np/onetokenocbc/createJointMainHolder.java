@@ -3,6 +3,7 @@ package sg.edu.np.onetokenocbc;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Base64;
@@ -16,9 +17,15 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -45,6 +52,7 @@ public class createJointMainHolder extends AppCompatActivity {
     public EditText address;
     public EditText postalCode;
     public EditText Occuption;
+    public EditText Password;
     public ImageView Create;
 
     @Override
@@ -66,31 +74,31 @@ public class createJointMainHolder extends AppCompatActivity {
 
         //id type
         this.idType = findViewById(R.id.jointIDtype);
-        String[] idList = new String[]{"Singaporean", "PR", "Foreigner"};
+        String[] idList = new String[]{"Singapore NRIC", "Singapore PR"};
         ArrayAdapter<String> idAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, idList);
         idType.setAdapter(idAdapter);
 
 
         //Gender
         this.Gender = findViewById(R.id.jointGender);
-        String[] genderList = new String[]{"M", "F"};
+        String[] genderList = new String[]{"Male", "Female"};
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, genderList);
         Gender.setAdapter(genderAdapter);
 
         //Marital Status
         this.mStatus = findViewById(R.id.jointMarital);
-        String[] mList = new String[]{"Single", "Married", "Windowed"};
+        String[] mList = new String[]{"Single", "Married", "Others"};
         ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, mList);
         mStatus.setAdapter(mAdapter);
 
         //Race
         this.race = findViewById(R.id.jointRace);
-        String[] raceList = new String[]{"Chinese", "Malay", "Indian", "Caucasian", "Others"};
+        String[] raceList = new String[]{"Chinese", "Malay", "Indian", "Others"};
         ArrayAdapter<String> raceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, raceList);
         race.setAdapter(raceAdapter);
 
         this.rType = findViewById(R.id.jointResidentType);
-        String[] rList = new String[]{"HDB", "Private", "Landed", "Condo", "Executive Apartment"};
+        String[] rList = new String[]{"HDB - Standard / Executive / Mansionette", "HDB - Studio Apartment for Senior Citizens", "HDB - HUDC / Executive Condominium','HDB - Shop with Accommodation ", "Condominium / Private Apartment", "Terrace / Bungalow"};
         ArrayAdapter<String> rAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, rList);
         rType.setAdapter(rAdapter);
 
@@ -105,6 +113,7 @@ public class createJointMainHolder extends AppCompatActivity {
         this.address = findViewById(R.id.jointAddress);
         this.postalCode = findViewById(R.id.jointPostal);
         this.Occuption = findViewById(R.id.jointOccupation);
+        this.Password = findViewById(R.id.jointPassword);
 
 
         //from OCR
@@ -125,7 +134,7 @@ public class createJointMainHolder extends AppCompatActivity {
         DOB.setText(receive.getStringExtra("DOB"));
 
         for (int i = 0; i < genderList.length; i++){
-            if(genderList[i].contains(receive.getStringExtra("Sex"))){
+            if(genderList[i].startsWith(receive.getStringExtra("Sex"))){
                 Gender.setSelection(i);
             }
         }
@@ -150,6 +159,52 @@ public class createJointMainHolder extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("title selected", titlesList[titles.getSelectedItemPosition()]);
+                AccountHolder updated = new AccountHolder();
+                Random rnd = new Random();
+                int number = rnd.nextInt(999999999);
+                updated.setCIFID(String.valueOf(number));
+                updated.setName(Name.getText().toString());
+                updated.setID(NRIC.getText().toString());
+                updated.setEmail(emailAddress.getText().toString());
+                updated.setPhoneNo(phoneNumber.getText().toString());
+                updated.setNationality(Nationality.getText().toString());
+                updated.setDOB(DOB.getText().toString());
+                updated.setAddress(address.getText().toString());
+                updated.setPostalCode(postalCode.getText().toString());
+                updated.setOccupation(Occuption.getText().toString());
+                updated.setSalutation(titlesList[titles.getSelectedItemPosition()]);
+                updated.setIDType(idList[idType.getSelectedItemPosition()]);
+                updated.setGender(genderList[Gender.getSelectedItemPosition()]);
+                updated.setMaritalStatus(mList[mStatus.getSelectedItemPosition()]);
+                updated.setRace(raceList[race.getSelectedItemPosition()]);
+                updated.setTypeofResidence(rList[rType.getSelectedItemPosition()]);
+                updated.setPassword(Password.getText().toString());
+
+                FirebaseAuth mAuth;
+                mAuth = FirebaseAuth.getInstance();
+                FirebaseUser Main = mAuth.getCurrentUser();
+                mAuth.createUserWithEmailAndPassword(updated.getEmail(),updated.getPassword());
+                mAuth.signOut();
+
+                SharedPreferences loginInfo = getSharedPreferences("loginInfo", MODE_PRIVATE);
+                String email = loginInfo.getString("email", "def");
+                String password = loginInfo.getString("password", "def");
+
+                Log.d("email user", email);
+                Log.d("password user", password);
+
+                mAuth.signInWithEmailAndPassword(email, password);
+
+
+                //Log.d("current user", mAuth.getCurrentUser().getUid());
+                createAccount(updated);
+
+
+                Intent i = new Intent(createJointMainHolder.this, AccountCreated.class);
+                createJointMainHolder.this.startActivity(i);
+                //create bank details and bank accounts
+
+
             }
         });
 
@@ -172,6 +227,38 @@ public class createJointMainHolder extends AppCompatActivity {
 
 
    }
+
+
+
+
+    private void createAccount(AccountHolder holder) {
+
+        try {
+            //conn = connectionclass();
+
+            //holder.setCIFID();
+            Connection conn = new AccountHolderDAL().AccountHolderConnection();
+            if (conn == null) {
+                Log.d("fuck", "you internet");
+            } else {
+                String query = "INSERT INTO AccountHolder (CIFID, ID, IDType, Nationality, Salutation, Name, DoB, Gender, MaritalStatus, Race, TypeofResidence, Address, " +
+                        "PostalCode, Email, PhoneNo, Occupation, Password) " +
+                        "VALUES ('" + holder.getCIFID() + "', '" + holder.getID() + "', '" + holder.getIDType() + "', '" + holder.getNationality() + "', '" + holder.getSalutation() + "', '" +
+                        holder.getName() + "', '" + holder.getDOB() + "', '" + "Male" + "', '" + holder.getMaritalStatus() + "', '" + holder.getRace() + "', '" +
+                        holder.getTypeofResidence()+ "', '" + holder.getAddress() + "', '" + holder.getPostalCode() + "', '" + holder.getEmail() + "', '" + holder.getPhoneNo() + "', '" +
+                        holder.getOccupation() + "', '" + holder.getPassword() + "')";
+
+
+                Statement stint = conn.createStatement();
+                Log.d("query", query);
+                stint.execute(query);
+                conn.close();
+            }
+        } catch (Exception ex) {
+            Log.d("error", ex.getMessage());
+        }
+    }
+
 
 }
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Base64;
@@ -53,6 +54,12 @@ public class newHomepage extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.setThreadPolicy( new StrictMode.ThreadPolicy.Builder().permitAll().build() );
         }
+        SharedPreferences loginInfo = getSharedPreferences("loginInfo", MODE_PRIVATE);
+        String email = loginInfo.getString("email", "def");
+        String password = loginInfo.getString("password", "def");
+
+        Log.d("email user", email);
+        Log.d("password user", password);
 
 
 //        OkHttpClient client = new OkHttpClient();
