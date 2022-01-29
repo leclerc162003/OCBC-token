@@ -249,7 +249,7 @@ public class updateMainHolder extends AppCompatActivity {
                 String query = "UPDATE AccountHolder SET ID= '" + holder.getID() + "', IDType= '" + "Singapore NRIC" + "' , Nationality= '" + holder.getNationality() +"' , Salutation= '" + holder.getSalutation() +"' , Name= '" + holder.getName()+
                         "' , DoB= '" + holder.getDOB() +"' , Gender= '"+ holder.getGender() +"' , MaritalStatus= '" + "Male" + "' , Race= '" + holder.getRace() + "' , TypeofResidence= '"+ "Terrace / Bungalow"+"' , Address= '"+ holder.getAddress() +
                         "' , PostalCode= '"+ holder.getPostalCode()+"' , Email= '"+ holder.getEmail()+"' , PhoneNo= '" + holder.getPhoneNo() +"' , Occupation= '" + holder.getOccupation() +
-                        "' WHERE ID = '" + holder.getCIFID().substring(0,8) +"'";
+                        "' WHERE CIFID = '" + holder.getCIFID().substring(0,8) +"'";
                 Log.d("query", query);
                 Log.d("id ", String.valueOf(holder.getCIFID().length()));
                 Statement stint = conn.createStatement();
