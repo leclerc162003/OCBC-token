@@ -4,6 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient1"
     tools:context=".jointHolderoption">
+
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Existing User"
+        app:layout_constraintBottom_toTopOf="@+id/optionExistingUser"
+        app:layout_constraintEnd_toEndOf="@+id/optionExistingUser"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="@+id/optionExistingUser"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.684" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/optionExistingUser"
+        android:layout_width="333dp"
+        android:layout_height="259dp"
+        android:layout_marginTop="92dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/smartphone" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/optionNewUser"
+        android:layout_width="333dp"
+        android:layout_height="259dp"
+        android:layout_marginBottom="152dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/optionExistingUser"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/optionExistingUser"
+        app:layout_constraintTop_toBottomOf="@+id/optionExistingUser"
+        app:layout_constraintVertical_bias="1.0"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/identificationcard" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New User"
+        app:layout_constraintBottom_toTopOf="@+id/optionNewUser"
+        app:layout_constraintEnd_toEndOf="@+id/optionNewUser"
+        app:layout_constraintStart_toStartOf="@+id/optionNewUser"
+        app:layout_constraintTop_toBottomOf="@+id/optionExistingUser"
+        app:layout_constraintVertical_bias="0.625" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please Choose an Option"
+        app:layout_constraintBottom_toTopOf="@+id/textView19"
+        app:layout_constraintEnd_toEndOf="@+id/optionExistingUser"
+        app:layout_constraintStart_toStartOf="@+id/optionExistingUser"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
