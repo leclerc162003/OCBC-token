@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OneTokenOCBC">
-        <activity android:name=".AccountCreated"></activity>
+        <activity android:name=".otp"></activity>
+        <activity android:name=".AccountCreated" />
         <activity android:name=".jointHolderoption" />
         <activity android:name=".updateMainHolder" />
         <activity android:name=".backNRIC" />

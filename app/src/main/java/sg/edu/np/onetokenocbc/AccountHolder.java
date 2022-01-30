@@ -1,8 +1,10 @@
 package sg.edu.np.onetokenocbc;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class AccountHolder {
+@SuppressWarnings("serial")
+public class AccountHolder implements Serializable {
 
     private String CIFID;
     private String ID;

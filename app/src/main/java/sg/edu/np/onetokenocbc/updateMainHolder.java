@@ -175,6 +175,7 @@ public class updateMainHolder extends AppCompatActivity {
                 updateAccountHolder(updated);
                 Log.d("updated", "yes");
 
+
                 Intent i = new Intent(updateMainHolder.this, jointHolderoption.class);
                 updateMainHolder.this.startActivity(i);
 
@@ -214,7 +215,7 @@ public class updateMainHolder extends AppCompatActivity {
                 ResultSet rs = stint.executeQuery(query);
                 if (rs.next()) {
                     Log.d("cifid", rs.getString(1));
-                    holder.setCIFID(rs.getString(1)); //get and set CIFID
+                    holder.setCIFID(rs.getString(1).trim()); //get and set CIFID
                     holder.setID(rs.getString(2)); //get and set ID
                     holder.setIDType(rs.getString(3));
                     holder.setNationality(rs.getString(4));

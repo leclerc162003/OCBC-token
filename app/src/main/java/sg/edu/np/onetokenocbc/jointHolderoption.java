@@ -16,7 +16,7 @@ public class jointHolderoption extends AppCompatActivity {
         setContentView(R.layout.activity_joint_holderoption);
         //chose between new or existing ocbc user
 
-        LottieAnimationView existingUser = findViewById(R.id.optionExistingUser);
+        LottieAnimationView existingUser = findViewById(R.id.otplottie);
         LottieAnimationView newUser = findViewById(R.id.optionNewUser);
 
 

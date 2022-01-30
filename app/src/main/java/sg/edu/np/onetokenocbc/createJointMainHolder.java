@@ -35,7 +35,7 @@ import okhttp3.Response;
 
 public class createJointMainHolder extends AppCompatActivity {
 
-
+    public AccountHolder mainHolder;
     //initialise all from view
     public Spinner titles;
     public EditText Name;
@@ -161,7 +161,7 @@ public class createJointMainHolder extends AppCompatActivity {
                 Log.d("title selected", titlesList[titles.getSelectedItemPosition()]);
                 AccountHolder updated = new AccountHolder();
                 Random rnd = new Random();
-                int number = rnd.nextInt(999999999);
+                int number = 100000000 + rnd.nextInt(900000000);
                 updated.setCIFID(String.valueOf(number));
                 updated.setName(Name.getText().toString());
                 updated.setID(NRIC.getText().toString());
@@ -180,29 +180,69 @@ public class createJointMainHolder extends AppCompatActivity {
                 updated.setTypeofResidence(rList[rType.getSelectedItemPosition()]);
                 updated.setPassword(Password.getText().toString());
 
-                FirebaseAuth mAuth;
-                mAuth = FirebaseAuth.getInstance();
-                FirebaseUser Main = mAuth.getCurrentUser();
-                mAuth.createUserWithEmailAndPassword(updated.getEmail(),updated.getPassword());
-                mAuth.signOut();
-
-                SharedPreferences loginInfo = getSharedPreferences("loginInfo", MODE_PRIVATE);
-                String email = loginInfo.getString("email", "def");
-                String password = loginInfo.getString("password", "def");
-
-                Log.d("email user", email);
-                Log.d("password user", password);
-
-                mAuth.signInWithEmailAndPassword(email, password);
+//                FirebaseAuth mAuth;
+//                mAuth = FirebaseAuth.getInstance();
+//                FirebaseUser Main = mAuth.getCurrentUser();
+//                mAuth.createUserWithEmailAndPassword(updated.getEmail(),updated.getPassword());
+//                mAuth.signOut();
+//
+//                SharedPreferences loginInfo = getSharedPreferences("loginInfo", MODE_PRIVATE);
+//                String email = loginInfo.getString("email", "def");
+//                String password = loginInfo.getString("password", "def");
+//
+//                Log.d("email user", email);
+//                Log.d("password user", password);
+//
+//                mAuth.signInWithEmailAndPassword(email, password);
 
 
                 //Log.d("current user", mAuth.getCurrentUser().getUid());
-                createAccount(updated);
+                //createAccount(updated);
 
 
-                Intent i = new Intent(createJointMainHolder.this, AccountCreated.class);
-                createJointMainHolder.this.startActivity(i);
+//                Intent i = new Intent(createJointMainHolder.this, AccountCreated.class);
+//                createJointMainHolder.this.startActivity(i);
                 //create bank details and bank accounts
+
+                //create bank account
+                BankAccount account = new BankAccount();
+                Random rnd1 = new Random();
+                int accountno = rnd1.nextInt(999999999);
+                int cardno1 = rnd1.nextInt(99999999);
+                int cardno2 = rnd1.nextInt(99999999);
+                int cvv = rnd1.nextInt(999);
+                SharedPreferences mainholderinfo = getSharedPreferences("mainholderinfo", MODE_PRIVATE);
+                String mainCIFID = mainholderinfo.getString("CIFID", "def");
+
+                Log.d("CIFID", mainCIFID);
+                account.setAccountNo(String.valueOf(accountno));
+                account.setCIFID(mainCIFID);
+                account.setCardNo(String.valueOf(cardno1 + cardno2));
+                account.setCVV(String.valueOf(cvv));
+                account.setBalance("0");
+
+
+
+
+                AccountDetails details = new AccountDetails();
+
+                details.setAccountNo(String.valueOf(accountno));
+                details.setMainHolderID(mainCIFID);
+                details.setSubHolderID(updated.getCIFID());
+
+                //addBankAccount(account);
+                //addAccountDetails(details);
+
+                Intent i = new Intent(createJointMainHolder.this, otp.class);
+//                createJointMainHolder.this.startActivity(i);
+                //Intent i = new Intent(this, Y.class);
+                Bundle extras = new Bundle();
+                extras.putSerializable("jointholder", updated);
+                extras.putSerializable("bankaccount", account);
+                extras.putSerializable("details", details);
+                i.putExtras(extras);
+                createJointMainHolder.this.startActivity(i);
+
 
 
             }
@@ -258,6 +298,59 @@ public class createJointMainHolder extends AppCompatActivity {
             Log.d("error", ex.getMessage());
         }
     }
+
+
+    private void addBankAccount(BankAccount account){
+        try {
+            //conn = connectionclass();
+
+            //holder.setCIFID();
+            Connection conn = new AccountHolderDAL().AccountHolderConnection();
+            if (conn == null) {
+                Log.d("fuck", "you internet");
+            } else {
+                String query = "INSERT INTO BankAccount (AccountNo, CIFID,  CardNo, CVV, Balance) VALUES ('" +
+                        account.getAccountNo() +"', '" + account.getCIFID() + "', '" +  account.getCardNo() + "', '" + account.getCVV() + "', '" + account.getBalance() + "')";
+
+
+                Statement stint = conn.createStatement();
+                Log.d("query", query);
+                stint.execute(query);
+                conn.close();
+            }
+        } catch (Exception ex) {
+            Log.d("error", ex.getMessage());
+        }
+
+    }
+    private void addAccountDetails(AccountDetails details){
+        try {
+            //conn = connectionclass();
+
+            //holder.setCIFID();
+            Connection conn = new AccountHolderDAL().AccountHolderConnection();
+            if (conn == null) {
+                Log.d("fuck", "you internet");
+            } else {
+                String query = "INSERT INTO AccountDetails (AccountNo, MainHolderID, SubHolderID)" +
+                "VALUES ('" + details.getAccountNo() + "', '" + details.getMainHolderID() + "', '" + details.getSubHolderID() + "')";
+
+
+
+                Statement stint = conn.createStatement();
+                Log.d("query", query);
+                stint.execute(query);
+                conn.close();
+            }
+        } catch (Exception ex) {
+            Log.d("error", ex.getMessage());
+        }
+
+    }
+
+
+
+
 
 
 }

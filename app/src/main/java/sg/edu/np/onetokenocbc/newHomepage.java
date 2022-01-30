@@ -54,12 +54,12 @@ public class newHomepage extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.setThreadPolicy( new StrictMode.ThreadPolicy.Builder().permitAll().build() );
         }
-        SharedPreferences loginInfo = getSharedPreferences("loginInfo", MODE_PRIVATE);
-        String email = loginInfo.getString("email", "def");
-        String password = loginInfo.getString("password", "def");
-
-        Log.d("email user", email);
-        Log.d("password user", password);
+//        SharedPreferences loginInfo = getSharedPreferences("loginInfo", MODE_PRIVATE);
+//        String email = loginInfo.getString("email", "def");
+//        String password = loginInfo.getString("password", "def");
+//
+//        Log.d("email user", email);
+//        Log.d("password user", password);
 
 
 //        OkHttpClient client = new OkHttpClient();
@@ -90,7 +90,11 @@ public class newHomepage extends AppCompatActivity {
         this.createButton = findViewById(R.id.jointCreatebutton);
 
         AccountHolder currentuser = getAccountHolder(mAuth.getCurrentUser().getEmail());
-        name.setText("Mr " + currentuser.getName());
+        name.setText(currentuser.getSalutation() + " " + currentuser.getName());
+
+        SharedPreferences.Editor mainholderinfo = getSharedPreferences("mainholderinfo", MODE_PRIVATE).edit();
+        mainholderinfo.putString("CIFID", currentuser.getCIFID().trim());
+        mainholderinfo.apply();
 
 
         createButton.setOnClickListener(new View.OnClickListener() {

@@ -9,7 +9,7 @@
 
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/optionExistingUser"
+        android:id="@+id/otplottie"
         android:layout_width="333dp"
         android:layout_height="259dp"
 

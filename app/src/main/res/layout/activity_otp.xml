@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient1"
+    tools:context=".otp">
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/otplottie"
+        android:layout_width="282dp"
+        android:layout_height="209dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/otpassword"
+        app:layout_constraintStart_toStartOf="@+id/otpassword"
+        app:layout_constraintTop_toBottomOf="@+id/textView26"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/message" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/otploadinglottie"
+        android:layout_width="338dp"
+        android:layout_height="316dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/loading" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="OTP Sent "
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/otplottie"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="@+id/otplottie"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/otpassword"
+        android:layout_width="258dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="136dp"
+        android:background="@drawable/buttonshape1"
+        android:ems="10"
+        android:hint="One-Time Password"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/otplottie" />
+
+    <ImageView
+        android:id="@+id/otpenter"
+        android:layout_width="175dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/otpassword"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/otpassword"
+        app:srcCompat="@drawable/buttonshape2" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/otpenter"
+        app:layout_constraintEnd_toEndOf="@+id/otpenter"
+        app:layout_constraintStart_toStartOf="@+id/otpenter"
+        app:layout_constraintTop_toTopOf="@+id/otpenter" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
