@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -110,27 +111,49 @@ public class userLogin extends AppCompatActivity {
         loginBiometric.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                Log.d("onClick", "clicked");
-                biometricPrompt.authenticate(new CancellationSignal(), executor, new BiometricPrompt.AuthenticationCallback() {
-                    @Override
-                    public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
-                        activity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Log.d("onClick", "Authenticated");
-                            }
-                        });
-                    }
-                    @Override
-                    public void onAuthenticationError(int errorCode, CharSequence errString) {
-                        Log.d("AuthenticationError",errString.toString());
-                    }
 
-                    @Override
-                    public void onAuthenticationFailed() {
-                        Log.d("AuthenticationError","Failed");
-                    }
-                });
+                SharedPreferences loginInfo = getSharedPreferences("loginInfo", MODE_PRIVATE);
+                String email = loginInfo.getString("email", "def");
+                String password = loginInfo.getString("password", "def");
+                if (password == "def" || email == "def"){
+                    new AlertDialog.Builder(userLogin.this)
+                            .setTitle("Please Log In to enable fingerprint log in.")
+                            .setMessage("You need to log in first to enable fingerprint log in.")
+                            // A null listener allows the button to dismiss the dialog and take no further action.
+                            .setNegativeButton("Close", null)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }
+                else{
+                    Log.d("onClick", "clicked");
+                    biometricPrompt.authenticate(new CancellationSignal(), executor, new BiometricPrompt.AuthenticationCallback() {
+                        @Override
+                        public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Log.d("onClick", "Authenticated");
+                                    SharedPreferences loginInfo = getSharedPreferences("loginInfo", MODE_PRIVATE);
+                                    String email = loginInfo.getString("email", "def");
+                                    String password = loginInfo.getString("password", "def");
+                                    signIn(email, password);
+                                    userEmail.setText("");
+                                    userPassword.setText("");
+                                }
+                            });
+                        }
+                        @Override
+                        public void onAuthenticationError(int errorCode, CharSequence errString) {
+                            Log.d("AuthenticationError",errString.toString());
+                        }
+
+                        @Override
+                        public void onAuthenticationFailed() {
+                            Log.d("AuthenticationError","Failed");
+                        }
+                    });
+                }
+
             }
         });
     }
