@@ -1,12 +1,18 @@
 package sg.edu.np.onetokenocbc;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.hardware.biometrics.BiometricManager;
+import android.hardware.biometrics.BiometricPrompt;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.CancellationSignal;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -22,11 +28,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 public class userLogin extends AppCompatActivity {
     private FirebaseAuth mAuth;
     public EditText userEmail;
     public EditText userPassword;
     public ImageView login;
+    public ImageView loginBiometric;
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +52,20 @@ public class userLogin extends AppCompatActivity {
         this.userEmail = findViewById(R.id.loginID);
         this.userPassword = findViewById(R.id.loginpassword);
         this.login = findViewById(R.id.loginSi);
+        this.loginBiometric = findViewById(R.id.loginFi);
+
+        // Biometrics
+        Executor executor = Executors.newSingleThreadExecutor();
+        BiometricPrompt biometricPrompt = new BiometricPrompt.Builder(this)
+                .setTitle("Fingerprint Authentication")
+                .setSubtitle("Test Sub")
+                .setDescription("Test Descrpt")
+                .setNegativeButton("Cancel", executor, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).build();
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +102,35 @@ public class userLogin extends AppCompatActivity {
                 }
 
 
+            }
+        });
+
+        userLogin activity = this;
+
+        loginBiometric.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                Log.d("onClick", "clicked");
+                biometricPrompt.authenticate(new CancellationSignal(), executor, new BiometricPrompt.AuthenticationCallback() {
+                    @Override
+                    public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.d("onClick", "Authenticated");
+                            }
+                        });
+                    }
+                    @Override
+                    public void onAuthenticationError(int errorCode, CharSequence errString) {
+                        Log.d("AuthenticationError",errString.toString());
+                    }
+
+                    @Override
+                    public void onAuthenticationFailed() {
+                        Log.d("AuthenticationError","Failed");
+                    }
+                });
             }
         });
     }

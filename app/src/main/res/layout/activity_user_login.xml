@@ -95,12 +95,22 @@
         android:id="@+id/loginSi"
         android:layout_width="286dp"
         android:layout_height="56dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/backNRICpic"
         app:layout_constraintEnd_toEndOf="@+id/loginpassword"
         app:layout_constraintStart_toStartOf="@+id/loginpassword"
         app:layout_constraintTop_toBottomOf="@+id/loginpassword"
+        app:layout_constraintVertical_bias="0.060000002"
+        app:srcCompat="@drawable/buttonshape1" />
+
+    <ImageView
+        android:id="@+id/loginFi"
+        android:layout_width="286dp"
+        android:layout_height="56dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/backNRICpic"
+        app:layout_constraintEnd_toEndOf="@+id/loginSi"
+        app:layout_constraintStart_toStartOf="@+id/loginSi"
+        app:layout_constraintTop_toBottomOf="@+id/loginSi"
         app:srcCompat="@drawable/buttonshape1" />
 
     <TextView
