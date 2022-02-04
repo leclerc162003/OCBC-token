@@ -190,7 +190,7 @@ public class newHomepage extends AppCompatActivity {
                 Log.d("id ", String.valueOf(holder.getCIFID().length()));
                 Statement stint = conn.createStatement();
                 ResultSet rs = stint.executeQuery(query);
-                if (rs.next()) {
+                while (rs.next()) {
                     AccountDetails details = new AccountDetails();
                     details.setAccountNo(rs.getString(1));
                     details.setMainHolderID(rs.getString(2));
@@ -202,8 +202,8 @@ public class newHomepage extends AppCompatActivity {
                     //Log.d("fuck", String.valueOf(rs.));
 
                     accntData.add(details);
-                    conn.close();
                 }
+                conn.close();
             }
         } catch (Exception ex) {
             Log.d("error", ex.getMessage());
