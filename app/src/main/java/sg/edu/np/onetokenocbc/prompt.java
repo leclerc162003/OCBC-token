@@ -53,7 +53,7 @@ public class prompt extends AppCompatActivity {
                 request.setReplied(true);
                 mDatabase.child("Messages").child(mAuth.getUid()+"1").child(mAuth.getUid()).setValue(request);
 
-                Intent i = new Intent(prompt.this, Home.class);
+                Intent i = new Intent(prompt.this, newHomepage.class);
                 prompt.this.startActivity(i);
             }
         });
@@ -64,7 +64,7 @@ public class prompt extends AppCompatActivity {
                 request.setAuthorise(false);
                 request.setReplied(true);
                 mDatabase.child("Messages").child(mAuth.getUid()+"1").child(mAuth.getUid()).setValue(request);
-                Intent i = new Intent(prompt.this, Home.class);
+                Intent i = new Intent(prompt.this, newHomepage.class);
                 prompt.this.startActivity(i);
             }
         });

@@ -58,8 +58,8 @@ public class userLogin extends AppCompatActivity {
         Executor executor = Executors.newSingleThreadExecutor();
         BiometricPrompt biometricPrompt = new BiometricPrompt.Builder(this)
                 .setTitle("Fingerprint Authentication")
-                .setSubtitle("Test Sub")
-                .setDescription("Test Descrpt")
+                .setSubtitle("Please touch the fingerprint sensor to login to the OCBC Application.")
+                .setDescription("")
                 .setNegativeButton("Cancel", executor, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

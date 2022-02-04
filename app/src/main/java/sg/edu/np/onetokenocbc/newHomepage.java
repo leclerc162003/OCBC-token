@@ -20,6 +20,11 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -45,7 +50,8 @@ public class newHomepage extends AppCompatActivity {
     private FirebaseAuth mAuth;
     public Connection conn;
     ArrayList<AccountDetails> accntData = new ArrayList<>();
-
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://onetokenocbc-default-rtdb.asia-southeast1.firebasedatabase.app/");
+    DatabaseReference mDatabase = firebaseDatabase.getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +69,56 @@ public class newHomepage extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.setThreadPolicy( new StrictMode.ThreadPolicy.Builder().permitAll().build() );
         }
+
+
+        mAuth = FirebaseAuth.getInstance();
+
+        Log.d("User id", mAuth.getUid());
+
+        mDatabase.child("Messages").child(mAuth.getUid()+"1").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot: snapshot.getChildren() ){
+                    //Requests request = postSnapshot.getValue(Requests.class);
+                    Requests request = postSnapshot.getValue(Requests.class);
+                    if (request.getUIDUser().contentEquals(mAuth.getUid())){
+                        if(request.getReplied() == false){
+                            Bundle extras = new Bundle();
+                            extras.putString("UID", request.getUIDUser());
+                            extras.putString("MessageID", request.getMessageID());
+                            extras.putString("Message", request.getMessage());
+                            extras.putBoolean("Authorise", request.getAuthorise());
+                            extras.putBoolean("Replied", request.getReplied());
+                            Intent i = new Intent(newHomepage.this, prompt.class);
+                            i.putExtras(extras);
+                            newHomepage.this.startActivity(i);
+                        }
+                    }
+
+
+//                    if(request.getReplied() == false){
+//                        Bundle extras = new Bundle();
+//                        extras.putString("UID", request.getUIDUser());
+//                        extras.putString("MessageID", request.getMessageID());
+//                        extras.putString("Message", request.getMessage());
+//                        extras.putBoolean("Authorise", request.getAuthorise());
+//                        extras.putBoolean("Replied", request.getReplied());
+//                        Intent i = new Intent(Home.this, prompt.class);
+//                        i.putExtras(extras);
+//                        Home.this.startActivity(i);
+//                    }
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 //        SharedPreferences loginInfo = getSharedPreferences("loginInfo", MODE_PRIVATE);
 //        String email = loginInfo.getString("email", "def");
 //        String password = loginInfo.getString("password", "def");
@@ -93,12 +149,13 @@ public class newHomepage extends AppCompatActivity {
 //
 //
 
-        mAuth = FirebaseAuth.getInstance();
+        //mAuth = FirebaseAuth.getInstance();
         this.name = findViewById(R.id.name);
         this.logout = findViewById(R.id.logout);
         this.createButton = findViewById(R.id.jointCreatebutton);
 
         AccountHolder currentuser = getAccountHolder(mAuth.getCurrentUser().getEmail());
+        Log.d("cidid", mAuth.getCurrentUser().getUid());
         name.setText(currentuser.getSalutation() + " " + currentuser.getName());
         getJointAccouunts(currentuser);
         SharedPreferences.Editor mainholderinfo = getSharedPreferences("mainholderinfo", MODE_PRIVATE).edit();

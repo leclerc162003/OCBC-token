@@ -104,8 +104,10 @@ public class secretactivity extends AppCompatActivity {
                                         for(int i = 0; i < content.size(); i++){
                                             Log.d("words", content.get(i));
                                         }
-
-                                        if(!content.get(0).toUpperCase().contains("REPUBLIC OF SINGAPORE")){
+                                        if(content.size() == 0){
+                                            error.setText("The image uploaded is not an NRIC. Please Try Again");
+                                        }
+                                        else if(!content.get(0).toUpperCase().contains("REPUBLIC OF SINGAPORE")){
                                             error.setText("The image uploaded is not an NRIC. Please Try Again");
                                         }
                                         else{

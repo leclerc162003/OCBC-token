@@ -105,8 +105,10 @@ public class backNRIC extends AppCompatActivity {
                                         for(int i = 0; i < content.size(); i++){
                                             Log.d("words", content.get(i));
                                         }
-
-                                        if(!content.get(2).toLowerCase().contains("date of issue")){
+                                        if(content.size() == 0){
+                                            error.setText("Please upload the image of the back of the NRIC");
+                                        }
+                                        else if(!content.get(2).toLowerCase().contains("date of issue")){
                                             error.setText("Please re-upload the image of the back of the NRIC");
                                         }
                                         else{
