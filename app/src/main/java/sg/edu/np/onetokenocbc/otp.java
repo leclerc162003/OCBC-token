@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieDrawable;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -49,11 +50,15 @@ public class otp extends AppCompatActivity {
         Intent i = getIntent();
         String usertype = i.getStringExtra("UserType");
 
-        if(usertype ==  "New") {
-            AccountHolder joint = (AccountHolder) i.getSerializableExtra("jointholder");
-            BankAccount account = (BankAccount) i.getSerializableExtra("bankaccount");
-            AccountDetails details = (AccountDetails) i.getSerializableExtra("details");
+        if(usertype.equals("New")) {
+            Intent k = getIntent();
+            AccountHolder joint = (AccountHolder) k.getSerializableExtra("jointholder");
+            BankAccount account = (BankAccount) k.getSerializableExtra("bankaccount");
+            AccountDetails details = (AccountDetails) k.getSerializableExtra("details");
 
+            Log.d("jointname", joint.getName());
+            Log.d("jointname", joint.getCIFID());
+            Log.d("jointname", joint.getAddress());
             String otp = sendPhoneNumber(joint.getPhoneNo());
 
 
@@ -63,7 +68,9 @@ public class otp extends AppCompatActivity {
                 public void onClick(View view) {
 
                     viewlottie.setVisibility(View.VISIBLE);
+                    viewlottie.setRepeatCount(LottieDrawable.INFINITE);
                     if (otpentered.getText().toString().equals(otp)) {
+                        viewlottie.setRepeatCount(LottieDrawable.INFINITE);
                         viewlottie.setVisibility(View.VISIBLE);
                         FirebaseAuth mAuth;
                         mAuth = FirebaseAuth.getInstance();
@@ -220,7 +227,7 @@ public class otp extends AppCompatActivity {
                 .add("To", "+65" + phone)
                 .add("Body", "Your One-Time Password is: " + otp + ". Do not share it with anyone else.")
                 .build();
-
+Log.d("number", "+65" + phone);
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)

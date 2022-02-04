@@ -120,7 +120,7 @@ public class updateMainHolder extends AppCompatActivity {
         DOB.setEnabled(false);
 
         for (int i = 0; i < titlesList.length; i++){
-            if(titlesList[i].contains(main.getSalutation())){
+            if(titlesList[i].equals(main.getSalutation())){
                 titles.setSelection(i);
             }
         }
