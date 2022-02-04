@@ -118,13 +118,12 @@ public class createJointMainHolder extends AppCompatActivity {
         this.postalCode = findViewById(R.id.jointPostal);
         this.Occuption = findViewById(R.id.jointOccupation);
         this.Password = findViewById(R.id.jointPassword);
-        this.box = findViewById(R.id.jointcheck);
         this.Create = findViewById(R.id.jointCreate);
         //from OCR
         Intent receive = getIntent();
 
         String type = receive.getStringExtra("UserType");
-        if(type == "New") {
+        if(type.equals("New")) {
             //receive.getStringExtra("NRIC");
             //receive.getStringExtra("Name");
             //receive.getStringExtra("Race");
@@ -281,7 +280,7 @@ public class createJointMainHolder extends AppCompatActivity {
                 }
             }
             for (int i = 0; i < idList.length; i++){
-                if(idList[i].contains(main.getIDType())){
+                if(idList[i].equals(main.getIDType())){
                     idType.setSelection(i);
                 }
             }
