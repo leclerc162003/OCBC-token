@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="310dp"
-        android:layout_height="170dp"
+        android:layout_width="318dp"
+        android:layout_height="214dp"
         android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/lottielogin"
@@ -47,10 +47,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/phoneNumberJointLogin"
         android:layout_width="236dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="84dp"
         android:background="@drawable/custominput"
         android:ems="10"
         android:hint="Phone Number"
@@ -58,7 +58,7 @@
         android:paddingLeft="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView10"
         app:layout_constraintEnd_toEndOf="@+id/imageView10"
-        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="@+id/imageView10" />
 
     <TextView
@@ -68,9 +68,30 @@
         android:text="Enter Phone Number"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPhone"
-        app:layout_constraintStart_toStartOf="@+id/editTextPhone"
+        app:layout_constraintBottom_toTopOf="@+id/phoneNumberJointLogin"
+        app:layout_constraintEnd_toEndOf="@+id/phoneNumberJointLogin"
+        app:layout_constraintStart_toStartOf="@+id/phoneNumberJointLogin"
         app:layout_constraintTop_toTopOf="@+id/imageView10" />
+
+    <ImageView
+        android:id="@+id/proceedOTP"
+        android:layout_width="181dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
+        app:layout_constraintEnd_toEndOf="@+id/phoneNumberJointLogin"
+        app:layout_constraintStart_toStartOf="@+id/phoneNumberJointLogin"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumberJointLogin"
+        app:srcCompat="@drawable/buttonshape2" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Proceed to OTP"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toBottomOf="@+id/proceedOTP"
+        app:layout_constraintEnd_toEndOf="@+id/proceedOTP"
+        app:layout_constraintStart_toStartOf="@+id/proceedOTP"
+        app:layout_constraintTop_toTopOf="@+id/proceedOTP" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

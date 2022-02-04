@@ -51,11 +51,9 @@ public class Home extends AppCompatActivity {
             //testConnection testConnection = new testConnection();
 
             if(conn == null){
-                Log.d("fuck", "you internet");
             }
             else{
                 String cifid = "";
-                Log.d("fuck", "it worked");
                 String query = "select * from AccountHolder" + "WHERE CIFID =" + cifid;
                 Statement stint = conn.createStatement();
                 ResultSet rs = stint.executeQuery(query);

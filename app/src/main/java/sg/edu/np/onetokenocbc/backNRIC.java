@@ -113,7 +113,7 @@ public class backNRIC extends AppCompatActivity {
                                             error.setText("");
                                             Bundle extras = new Bundle();
                                             Intent receive = getIntent();
-
+                                            extras.putString("UserType", "New");
                                             extras.putString("NRIC", receive.getStringExtra("NRIC"));
                                             extras.putString("Name", receive.getStringExtra("Name"));
                                             extras.putString("Race", receive.getStringExtra("Race"));

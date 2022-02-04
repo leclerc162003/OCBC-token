@@ -215,11 +215,10 @@
         android:id="@+id/jointCreate"
         android:layout_width="216dp"
         android:layout_height="58dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/check"
-        app:layout_constraintStart_toStartOf="@+id/check"
-        app:layout_constraintTop_toBottomOf="@+id/check"
-        app:layout_constraintVertical_bias="0.666"
+        app:layout_constraintEnd_toEndOf="@+id/jointcheck"
+        app:layout_constraintStart_toStartOf="@+id/jointcheck"
         app:srcCompat="@drawable/buttonshape1" />
 
     <TextView
@@ -233,15 +232,17 @@
         app:layout_constraintTop_toTopOf="@+id/jointCreate" />
 
     <CheckBox
-        android:id="@+id/check"
+        android:id="@+id/jointcheck"
         android:layout_width="276dp"
         android:layout_height="56dp"
         android:layout_marginTop="60dp"
         android:text="By checking this box, you agreed that you have filled up this form to correctly to the best of your ability"
+        app:layout_constraintBottom_toTopOf="@+id/jointCreate"
         app:layout_constraintEnd_toEndOf="@+id/jointOccupation"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="@+id/jointOccupation"
-        app:layout_constraintTop_toBottomOf="@+id/jointOccupation" />
+        app:layout_constraintTop_toBottomOf="@+id/jointOccupation"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/jointPassword"
@@ -250,7 +251,7 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/check"
+        app:layout_constraintBottom_toTopOf="@+id/jointcheck"
         app:layout_constraintEnd_toEndOf="@+id/jointOccupation"
         app:layout_constraintStart_toStartOf="@+id/jointOccupation"
         app:layout_constraintTop_toBottomOf="@+id/jointOccupation" />

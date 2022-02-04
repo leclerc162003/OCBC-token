@@ -38,7 +38,8 @@ public class jointHolderoption extends AppCompatActivity {
         existingUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent i = new Intent(jointHolderoption.this, );
+                Intent i = new Intent(jointHolderoption.this, jointHolderLogin.class);
+                jointHolderoption.this.startActivity(i);
             }
         });
 
