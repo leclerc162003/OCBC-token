@@ -2,6 +2,8 @@ package sg.edu.np.onetokenocbc;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -27,6 +29,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -41,6 +44,7 @@ public class newHomepage extends AppCompatActivity {
     private ImageView createButton;
     private FirebaseAuth mAuth;
     public Connection conn;
+    ArrayList<AccountDetails> accntData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,11 @@ public class newHomepage extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_new_homepage);
+        RecyclerView rv = findViewById(R.id.accntRV);
+        accountRVAdapter adapter = new accountRVAdapter(this, accntData);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        rv.setLayoutManager(layoutManager);
+        rv.setAdapter(adapter);
 
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -91,7 +100,7 @@ public class newHomepage extends AppCompatActivity {
 
         AccountHolder currentuser = getAccountHolder(mAuth.getCurrentUser().getEmail());
         name.setText(currentuser.getSalutation() + " " + currentuser.getName());
-
+        getJointAccouunts(currentuser);
         SharedPreferences.Editor mainholderinfo = getSharedPreferences("mainholderinfo", MODE_PRIVATE).edit();
         mainholderinfo.putString("CIFID", currentuser.getCIFID().trim());
         mainholderinfo.apply();
@@ -115,7 +124,7 @@ public class newHomepage extends AppCompatActivity {
             }
         });
 
-
+        adapter.notifyDataSetChanged();
     }
 
 
@@ -165,6 +174,40 @@ public class newHomepage extends AppCompatActivity {
         }
 
         return holder;
+    }
+
+    private void getJointAccouunts(AccountHolder holder){
+        try {
+            //conn = connectionclass();
+            conn = new AccountHolderDAL().AccountHolderConnection();
+            if (conn == null) {
+                Log.d("fuck", "you internet");
+            } else {
+                String query = "SELECT BankAccount.AccountNo, AccountDetails.MainHolderID, AccountDetails.SubHolderID FROM BankAccount INNER JOIN AccountDetails ON BankAccount.AccountNo = AccountDetails.AccountNo INNER JOIN AccountHolder ON AccountDetails.MainHolderID = AccountHolder.CIFID" +
+                        " WHERE AccountHolder.CIFID = '" + holder.getCIFID().trim() + "'";
+
+                Log.d("query", query);
+                Log.d("id ", String.valueOf(holder.getCIFID().length()));
+                Statement stint = conn.createStatement();
+                ResultSet rs = stint.executeQuery(query);
+                if (rs.next()) {
+                    AccountDetails details = new AccountDetails();
+                    details.setAccountNo(rs.getString(1));
+                    details.setMainHolderID(rs.getString(2));
+                    details.setSubHolderID(rs.getString(3));
+
+                    Log.d("cifid", rs.getString(1));
+                    Log.d("fuck", String.valueOf(rs.getRow()));
+                    Log.d("fucks fuck", rs.getString(1));
+                    //Log.d("fuck", String.valueOf(rs.));
+
+                    accntData.add(details);
+                    conn.close();
+                }
+            }
+        } catch (Exception ex) {
+            Log.d("error", ex.getMessage());
+        }
     }
 }
 

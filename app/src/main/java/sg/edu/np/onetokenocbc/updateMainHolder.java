@@ -268,7 +268,6 @@ public class updateMainHolder extends AppCompatActivity {
         } catch (Exception ex) {
             Log.d("error", ex.getMessage());
         }
-
     }
 
 //    private void createAccount(AccountHolder holder) {

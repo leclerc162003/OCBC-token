@@ -114,24 +114,18 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="15dp"
                 android:paddingLeft="15dp"
-                android:text="Pending Applications"
+                android:text="Joint Accounts"
                 android:textColor="#F23E77"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
-            <ImageView
-                android:id="@+id/imageView7"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/accntRV"
                 android:layout_width="match_parent"
-                android:layout_height="239dp"
-                android:layout_marginTop="8dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView18"
-                app:srcCompat="@drawable/shape5" />
+                android:layout_height="174dp"
+                android:paddingLeft="30dp" />
 
             <TextView
                 android:layout_width="372dp"
